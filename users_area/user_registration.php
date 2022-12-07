@@ -1,3 +1,6 @@
+<!-- include the connection -->
+<?php include('../includes/connect.php');?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,6 +61,66 @@
             </div>   
         </div>    
     </div>
-
 </body>
 </html>
+
+<!-- php code to handle backend-->
+
+<?php
+//isset() determines if a variable is set and is not NULL
+//after that we are checking if the user_register button is clicked since we defined form method above as POST
+if(isset($_POST['user_register']))
+{
+    //assign the attributes to variables
+    $first_name=$_POST['first_name'];
+    $last_name=$_POST['last_name'];
+    $user_email=$_POST['user_email'];
+    $user_password=$_POST['user_password'];
+
+    //the hash will take the password and PASSWORD_DEFAULT is the algorithm used to hash the password as parameters
+    $hashed_password=password_hash($user_password,PASSWORD_DEFAULT);
+    $conf_user_password=$_POST['conf_user_password'];
+    $contact_num=$_POST['contact_num'];
+
+
+    //select_query for checking if email already exists
+    $select_query="select * from `USER` where email='$user_email'";
+    $result=mysqli_query($con,$select_query);
+    $rows_count=mysqli_num_rows($result);
+    if($rows_count>0)
+    {
+        echo '<script>alert("Email already exists")</script>';
+        //die();
+    }
+    //select_query for checking if passwords match
+    else if($user_password!=$conf_user_password)
+    {
+        echo '<script>alert("Passwords do not match")</script>';
+    }
+    else
+    {
+        //insert_query
+        $insert_query="insert into `USER` (email,firstName,lastName,hashedPassword,phoneNo) values ('$user_email','$first_name','$last_name','$hashed_password','$contact_num')";
+        //query execution, pass in connection variable and query variable
+        $sql_execute=mysqli_query($con,$insert_query);
+
+        //for debugging purposes
+        if($sql_execute)
+        {
+            //print the error in alert form. <script> tags mean that is javascript code
+            //important to enclose the javascript code in single quotes not double quotes
+            echo '<script>alert("Registration Data Inserted Successfully")</script>';
+
+        }
+        else
+        {
+            //otherwise show the error message
+            die(mysqli_error($con));
+        }
+        
+    }
+
+
+    
+}
+?>
