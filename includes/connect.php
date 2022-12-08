@@ -8,7 +8,7 @@ $con=mysqli_connect("itsmushfik.com","itsmushf_471admin","qtwYnRTv8Ra99gm","itsm
 if($con)
 {
     //if connection is successful then print the following message to the webpage
-    echo "Connection successful for Ticket Reservation System";
+    // echo "Connection successful for Ticket Reservation System";
 }
 else
 {
