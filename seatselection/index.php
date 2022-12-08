@@ -2,12 +2,14 @@
   include dirname(__FILE__, 2).'\header.php';
   include dirname(__FILE__, 2).'\includes\functions.php';
 
+
+
   $matchNo = intval($_GET["match"]);
   $sections = getSeatsForMatch($con, $matchNo);
 
 ?>
 <div class="container">
-  <form action="/checkout" method="post">
+  <form action="../users_area/checkout.php" method="post">
     <div class="row">
       <?php foreach ($sections as $section): ?>
       <div class="form-group col-4">
@@ -21,7 +23,9 @@
       <?php endforeach ?>
     </div>
     <div class="row mt-3 justify-content-md-center">
+      
       <button type="submit" class="btn btn-primary col-4">Checkout</button>
+      
     </div>
   </form>
 </div>
