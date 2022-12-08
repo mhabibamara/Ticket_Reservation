@@ -88,7 +88,9 @@ if(isset($_POST['user_register']))
     //select_query for checking if email already exists
     $select_query="select * from `USER` where email='$user_email'";
     $result=mysqli_query($con,$select_query);
-    $rows_count=mysqli_num_rows($result);
+    $rows_count=mysqli_num_rows($result);    
+  
+
     if($rows_count>0)
     {
         echo '<script>alert("Email already exists")</script>';
@@ -113,6 +115,8 @@ if(isset($_POST['user_register']))
             //important to enclose the javascript code in single quotes not double quotes
             echo '<script>alert("Registration Data Inserted Successfully")</script>';
             $_SESSION['user_email']=$user_email;
+            $_SESSION['first_name']=$first_name;
+
             echo "<script>window.open('../index.php','_self')</script>";
 
 
@@ -122,7 +126,6 @@ if(isset($_POST['user_register']))
             //otherwise show the error message
             die(mysqli_error($con));
         }
-
 
         
     }

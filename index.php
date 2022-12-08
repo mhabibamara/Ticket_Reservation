@@ -21,7 +21,7 @@
       ?>
       <div class="col-md-4">
         <div class="card">
-          <img src="./images/game1.png" class="card-img-top" alt="...">
+          <img src="./images/thumbnail.png" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title"><?php echo $match['team_1']." VS ".$match['team_2']?></h5>
             <p class="card-text">

@@ -40,17 +40,22 @@ function getSeatsForMatch($con, $matchNo) {
     return $sections;
 }
 
+//encloses strings in quotes
 function enclose($v) {
     return("\"".$v."\"");
 }
 
 function setTicketsToUser($con, $ids, $email) {
     $sql = "UPDATE TICKET t SET t.availability = FALSE, t.email = \"".$email."\" WHERE t.ID IN (" . implode(",", array_map('enclose', $ids)) . ")";
+    //does execution and stores result. But result for UPDATE does not matter
     $result = $con->query($sql);
     $sql = "SELECT SUM(t.price) as p FROM TICKET t WHERE t.ID IN (" . implode(",", array_map('enclose', $ids)) . ")";
     $result = $con->query($sql);
+
+    //sets the result as as an object that can be a
     $retval = $result->fetch_object();
     // print_r($retval->p);
+    //Sum of price is renamed as p as seen in the querry above
     return $retval->p;
 }
 

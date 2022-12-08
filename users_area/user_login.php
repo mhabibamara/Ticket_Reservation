@@ -84,6 +84,9 @@
                 $_SESSION['user_email']=$user_email;
                 echo "<script>window.open('../index.php','_self')</script>";
 
+                $_SESSION['first_name']=$row_data['firstName'];
+            
+
                 //if sessional buyin variable is true then redirect to payment page
                 //but if it is not true then redirect to user dashboard
 

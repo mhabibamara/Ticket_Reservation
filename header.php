@@ -30,7 +30,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active" aria-current="page" href="index.php">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="venue.php">Venue</a>
@@ -44,7 +44,7 @@
         <?php
           if(isset($_SESSION['user_email']))
           {
-            echo "<a class='nav-link' href='#'>My Tickets</a>";
+            echo "<a class='nav-link' href='mytickets.php'>My Tickets</a>";
           }
         ?>
         <li class="nav-item">
@@ -68,7 +68,7 @@
           }
           else
           {
-            echo "<a class='nav-link' href='#'>Welcome ".$_SESSION['user_email']."</a>";
+            echo "<a class='nav-link' href='#'>Welcome ".$_SESSION['first_name']."</a>";
           }
         ?>
         <!-- <li class="nav-item">
