@@ -1,5 +1,7 @@
 <!-- include the connection -->
-<?php include('../includes/connect.php');?>
+<?php include('../includes/connect.php');
+    session_start();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +20,7 @@
         <h2 class="text-center">New User Registration</h2>
         <div class="row d-flex align-items-center justify-content-center">
             <div class="col-lg-12 col-xl-6">
-    <form action="user_registration.php" method="POST" enctype="multipart/form-data">
+    <form action="" method="POST" enctype="multipart/form-data">
         <!-- first name field-->
         <div class="form-outline mb-4">
             <label for="first_name" class="form-label">First Name</label>
@@ -110,6 +112,9 @@ if(isset($_POST['user_register']))
             //print the error in alert form. <script> tags mean that is javascript code
             //important to enclose the javascript code in single quotes not double quotes
             echo '<script>alert("Registration Data Inserted Successfully")</script>';
+            $_SESSION['user_email']=$user_email;
+            echo "<script>window.open('../index.php','_self')</script>";
+
 
         }
         else
@@ -117,6 +122,8 @@ if(isset($_POST['user_register']))
             //otherwise show the error message
             die(mysqli_error($con));
         }
+
+
         
     }
 

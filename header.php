@@ -1,5 +1,7 @@
 <?php 
+  include('includes/connect.php');
   date_default_timezone_set('America/Edmonton');
+  @session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,12 +35,18 @@
         <li class="nav-item">
           <a class="nav-link" href="#">Venue</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="http://localhost/users_area/user_registration.php">Register</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fa-solid fa-cart-shopping"></i></a>
-        </li>
+        <?php
+          if(!isset($_SESSION['user_email']))
+          {
+            echo "<a class='nav-link' href='./users_area/user_registration.php'>Register</a>";
+          }
+        ?>
+        <?php
+          if(isset($_SESSION['user_email']))
+          {
+            echo "<a class='nav-link' href='#'>My Tickets</a>";
+          }
+        ?>
         <li class="nav-item">
           <a class="nav-link" href="#">Contact</a>
         </li>
@@ -50,11 +58,31 @@
 <!-- second child-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <ul class="navbar-nav me-auto">
-    <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" href="#">Welcome Guest</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="http://localhost/users_area/user_login.php">Login</a>
-        </li>
+        </li> -->
+        <?php
+          if(!isset($_SESSION['user_email']))
+          {
+            echo "<a class='nav-link' href='#'>Welcome Guest</a>";
+          }
+          else
+          {
+            echo "<a class='nav-link' href='#'>Welcome ".$_SESSION['user_email']."</a>";
+          }
+        ?>
+        <!-- <li class="nav-item">
+          <a class="nav-link" href='./users_area/user_login.php'>Login</a>
+        </li> -->
+        <?php
+          if(!isset($_SESSION['user_email']))
+          {
+            echo "<a class='nav-link' href='./users_area/user_login.php'>Login</a>";
+          }
+          else
+          {
+            echo "<a class='nav-link' href='./users_area/logout.php'>Logout</a>";
+          }
+        ?>
     </ul>
 </nav>
