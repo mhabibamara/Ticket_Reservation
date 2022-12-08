@@ -33,7 +33,7 @@
           <a class="nav-link active" aria-current="page" href="#">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Venue</a>
+          <a class="nav-link" href="venue.php">Venue</a>
         </li>
         <?php
           if(!isset($_SESSION['user_email']))
@@ -48,7 +48,7 @@
           }
         ?>
         <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
+          <a class="nav-link" href="contact.php">Contact</a>
         </li>
       </ul>
     </div>

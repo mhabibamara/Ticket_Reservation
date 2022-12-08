@@ -25,6 +25,13 @@
     <p class="text-center">The available events/plans that you can purchase tickets for are listed below</p>
 </div> -->
 
+
+
+<?php 
+$_SESSION['cart'] = $_POST["ticket"];
+?>
+
+
 <!-- fourth child -->
 <div class="row px-1">
     <div class="col-md-12">

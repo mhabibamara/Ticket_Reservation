@@ -40,5 +40,15 @@ function getSeatsForMatch($con, $matchNo) {
     return $sections;
 }
 
+function setTicketsToUser($con, $ids, $email) {
+    // $sql = "UPDATE TICKET t SET t.availability = FALSE, t.email = ".$email." WHERE t.ID in IN (" . implode(',', $ids) . ")";
+    // $result = $con->query($sql);
+    $sql = "SELECT SUM(t.price) as p FROM TICKET t WHERE t.ID in IN ('" . implode("','", array_map('mysql_real_escape_string', $ids)) 
+    . "')";
+    $result = $con->query($sql);
+    return $result->fetch_object()->p;
+}
+
+
 // print("<pre>".print_r(getSeatsForMatch($con, 25),true)."</pre>");
 ?>
