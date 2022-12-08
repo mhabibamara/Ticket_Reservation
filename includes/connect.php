@@ -9,10 +9,11 @@ if($con)
 {
     //if connection is successful then print the following message to the webpage
     // echo "Connection successful for Ticket Reservation System";
+    //to print the message if the connection is successful    
+    //echo "connected";
 }
 else
 {
-    //if connection is not successful then print the specific error message to the webpage which takes in our connection variable as a parameter
     die(mysqli_error($con));
 }
 
